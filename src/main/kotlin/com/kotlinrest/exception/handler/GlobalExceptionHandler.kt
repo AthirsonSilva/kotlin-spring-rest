@@ -1,5 +1,7 @@
-package com.kotlinrest.exception
+package com.kotlinrest.exception.handler
 
+import com.kotlinrest.exception.ExceptionResponse
+import com.kotlinrest.exception.ResourceNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -21,9 +23,9 @@ class GlobalExceptionHandler {
         )
     }
 
-    @ExceptionHandler(UnsupportedMathOperationException::class)
-    fun handleUnsupportedMathOperationException(
-        ex: UnsupportedMathOperationException,
+    @ExceptionHandler(ResourceNotFoundException::class)
+    fun handleGenericResourceNotFoundException(
+        ex: ResourceNotFoundException,
         request: WebRequest
     ): ResponseEntity<ExceptionResponse> {
         return ResponseEntity<ExceptionResponse>(
@@ -31,7 +33,7 @@ class GlobalExceptionHandler {
                 timestamp = LocalDateTime.now(),
                 message = ex.message,
                 details = request.getDescription(false)
-            ), HttpStatus.BAD_REQUEST
+            ), HttpStatus.NOT_FOUND
         )
     }
 
