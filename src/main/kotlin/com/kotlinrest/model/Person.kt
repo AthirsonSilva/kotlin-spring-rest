@@ -14,5 +14,4 @@ data class Person(
     var address: String = "",
     var gender: Gender = Gender.MALE,
     var age: Int = 0
-) {
-}
+)
