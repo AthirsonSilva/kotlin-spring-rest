@@ -3,7 +3,7 @@ package com.kotlinrest.mapper
 import com.github.dozermapper.core.DozerBeanMapperBuilder
 import com.github.dozermapper.core.Mapper
 
-object DozerMapper {
+object Dozer {
 
     private val mapper: Mapper = DozerBeanMapperBuilder.buildDefault()
 

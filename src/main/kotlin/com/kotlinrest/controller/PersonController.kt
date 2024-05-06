@@ -1,6 +1,6 @@
 package com.kotlinrest.controller
 
-import com.kotlinrest.data.dto.v1.PersonDto
+import com.kotlinrest.data.dto.PersonDto
 import com.kotlinrest.service.PersonService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag

@@ -1,4 +1,4 @@
-package com.kotlinrest.data.dto.v1
+package com.kotlinrest.data.dto
 
 import com.kotlinrest.enums.Gender
 

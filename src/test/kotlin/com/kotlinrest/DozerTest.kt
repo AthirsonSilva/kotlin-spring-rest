@@ -1,14 +1,14 @@
 package com.kotlinrest
 
-import com.kotlinrest.data.dto.v1.PersonDto
+import com.kotlinrest.data.dto.PersonDto
 import com.kotlinrest.enums.Gender
-import com.kotlinrest.mapper.DozerMapper
+import com.kotlinrest.mapper.Dozer
 import com.kotlinrest.model.Person
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class DozerMapperTest {
+class DozerTest {
 
     var inputObject: MockPerson? = null
 
@@ -19,7 +19,7 @@ class DozerMapperTest {
 
     @Test
     fun parseEntityToVOTest() {
-        val output: PersonDto = DozerMapper.map(inputObject!!.mockEntity(), PersonDto::class.java)
+        val output: PersonDto = Dozer.map(inputObject!!.mockEntity(), PersonDto::class.java)
         assertEquals("First Name Test0", output.firstName)
         assertEquals("Last Name Test0", output.lastName)
         assertEquals("Address Test0", output.address)
@@ -29,7 +29,7 @@ class DozerMapperTest {
     @Test
     fun parseEntityListToVOListTest() {
         val outputList: List<PersonDto> =
-            DozerMapper.mapList(inputObject!!.mockEntityList(), PersonDto::class.java)
+            Dozer.mapList(inputObject!!.mockEntityList(), PersonDto::class.java)
 
         val outputZero: PersonDto = outputList[0]
 
@@ -54,7 +54,7 @@ class DozerMapperTest {
     @Test
     fun parseVOToEntityTest() {
 
-        val output: Person = DozerMapper.map(inputObject!!.mockVO(), Person::class.java)
+        val output: Person = Dozer.map(inputObject!!.mockVO(), Person::class.java)
 
         assertEquals("First Name Test0", output.firstName)
         assertEquals("Last Name Test0", output.lastName)
@@ -65,7 +65,7 @@ class DozerMapperTest {
     @Test
     fun parserVOListToEntityListTest() {
 
-        val outputList: List<Person> = DozerMapper.mapList(inputObject!!.mockVOList(), Person::class.java)
+        val outputList: List<Person> = Dozer.mapList(inputObject!!.mockVOList(), Person::class.java)
 
         val outputZero: Person = outputList[0]
         assertEquals("First Name Test0", outputZero.firstName)

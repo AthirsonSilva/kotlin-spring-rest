@@ -1,8 +1,8 @@
 package com.kotlinrest.service
 
-import com.kotlinrest.data.dto.v1.PersonDto
+import com.kotlinrest.data.dto.PersonDto
 import com.kotlinrest.exception.ResourceNotFoundException
-import com.kotlinrest.mapper.DozerMapper
+import com.kotlinrest.mapper.Dozer
 import com.kotlinrest.model.Person
 import com.kotlinrest.repository.PersonRepository
 import org.slf4j.LoggerFactory
@@ -16,8 +16,8 @@ class PersonService(
 
     fun create(person: PersonDto): PersonDto {
         logger.info("Creating person: $person")
-        val personToCreate = DozerMapper.map(person, Person::class.java)
-        return DozerMapper.map(personRepository.save(personToCreate), PersonDto::class.java)
+        val personToCreate = Dozer.map(person, Person::class.java)
+        return Dozer.map(personRepository.save(personToCreate), PersonDto::class.java)
     }
 
     fun updateById(id: Long, person: PersonDto): PersonDto {
@@ -32,7 +32,7 @@ class PersonService(
         foundPerson.age = person.age
         foundPerson.gender = person.gender
 
-        return DozerMapper.map(personRepository.save(foundPerson), PersonDto::class.java)
+        return Dozer.map(personRepository.save(foundPerson), PersonDto::class.java)
     }
 
     fun deleteById(id: Long) {
@@ -45,12 +45,12 @@ class PersonService(
         val person = personRepository.findById(id).orElseThrow {
             ResourceNotFoundException("Person with id $id not found")
         }
-        return DozerMapper.map(person, PersonDto::class.java)
+        return Dozer.map(person, PersonDto::class.java)
     }
 
     fun findAllPersons(): List<PersonDto> {
         logger.info("Finding all persons")
-        return DozerMapper.mapList(personRepository.findAll(), PersonDto::class.java)
+        return Dozer.mapList(personRepository.findAll(), PersonDto::class.java)
     }
 
 }

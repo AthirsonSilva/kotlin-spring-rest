@@ -1,6 +1,6 @@
 package com.kotlinrest
 
-import com.kotlinrest.data.dto.v1.PersonDto
+import com.kotlinrest.data.dto.PersonDto
 import com.kotlinrest.enums.Gender
 import com.kotlinrest.model.Person
 
