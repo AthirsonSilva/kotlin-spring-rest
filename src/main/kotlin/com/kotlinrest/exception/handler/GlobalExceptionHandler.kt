@@ -16,7 +16,7 @@ class GlobalExceptionHandler {
     fun handleGenericException(ex: Exception, request: WebRequest): ResponseEntity<ExceptionResponse> {
         return ResponseEntity<ExceptionResponse>(
             ExceptionResponse(
-                timestamp = LocalDateTime.now(),
+                timestamp = LocalDateTime.now().toString(),
                 message = ex.message,
                 details = request.getDescription(false)
             ), HttpStatus.INTERNAL_SERVER_ERROR
@@ -30,7 +30,7 @@ class GlobalExceptionHandler {
     ): ResponseEntity<ExceptionResponse> {
         return ResponseEntity<ExceptionResponse>(
             ExceptionResponse(
-                timestamp = LocalDateTime.now(),
+                timestamp = LocalDateTime.now().toString(),
                 message = ex.message,
                 details = request.getDescription(false)
             ), HttpStatus.NOT_FOUND
