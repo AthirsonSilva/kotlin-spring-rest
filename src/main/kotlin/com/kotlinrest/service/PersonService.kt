@@ -45,6 +45,7 @@ class PersonService(
         val person = personRepository.findById(id).orElseThrow {
             ResourceNotFoundException("Person with id $id not found")
         }
+
         return Dozer.map(person, PersonDto::class.java)
     }
 

@@ -1,6 +1,7 @@
 package com.kotlinrest.exception.handler
 
 import com.kotlinrest.exception.ExceptionResponse
+import com.kotlinrest.exception.RequiredObjectIsNullException
 import com.kotlinrest.exception.ResourceNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -26,6 +27,20 @@ class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException::class)
     fun handleGenericResourceNotFoundException(
         ex: ResourceNotFoundException,
+        request: WebRequest
+    ): ResponseEntity<ExceptionResponse> {
+        return ResponseEntity<ExceptionResponse>(
+            ExceptionResponse(
+                timestamp = LocalDateTime.now().toString(),
+                message = ex.message,
+                details = request.getDescription(false)
+            ), HttpStatus.NOT_FOUND
+        )
+    }
+
+    @ExceptionHandler(RequiredObjectIsNullException::class)
+    fun handleGenericResourceNotFoundException(
+        ex: RequiredObjectIsNullException,
         request: WebRequest
     ): ResponseEntity<ExceptionResponse> {
         return ResponseEntity<ExceptionResponse>(
